@@ -1,113 +1,45 @@
-## Requirements
+# 🏗 Scaffold-Stark Challenges
 
-Before you begin, you need to install the following tools:
+**Learn how to use 🏗 Scaffold-Stark to create decentralized applications on Starknet. 🚀**
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+---
 
-### Install scarb
+## 🚩 Challenge 0: 🎟 Simple NFT Example
 
-To ensure the proper functioning of scaffold-stark, your local `Scarb` version must be `2.5.4`. To accomplish this, first check your local Scarb version:
+🎫 Create a simple NFT to learn the basics of 🏗 scaffold-stark. You'll use [Scarb](https://docs.swmansion.com/scarb/) to compile and [Starknet.js](https://www.starknetjs.com/) to deploy smart contracts. Then, you'll use a template React app full of important Starknet components and hooks. Finally, you'll deploy an NFT to a public network to share with friends! 🚀
 
-```sh
-scarb --version
-```
+https://github.com/Quantum3-Labs/speedrunstark/tree/simple-nft-example
 
-If your local Scarb version is not `2.5.4`, you need to install it.
+---
 
-<details>
-<summary><b>Installation Process</b></summary>
+## 🚩 Challenge 1: 🔏 Decentralized Staking App
 
-To install Scarb, please refer to the [installation instructions](https://docs.swmansion.com/scarb/download).
-We strongly recommend that you install
-Scarb via [asdf](https://docs.swmansion.com/scarb/download.html#install-via-asdf), a CLI tool that can manage
-multiple language runtime versions on a per-project basis.
-This will ensure that the version of Scarb you use to work on a project always matches the one defined in the
-project settings, avoiding problems related to version mismatches.
+🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. If the users cooperate, the money is collected in a second smart contract. If they defect, the worst that can happen is everyone gets their money back. The users only have to trust the code.
 
-Please refer to the [asdf documentation](https://asdf-vm.com/guide/getting-started.html) to install all
-prerequisites.
+https://github.com/Quantum3-Labs/speedrunstark/tree/decentralized-staking
 
-Once you have `asdf` installed locally, you can download Scarb plugin with the following command:
+---
 
-```bash
-asdf plugin add scarb
-```
+## 🚩 Challenge 2: 🏵 Token Vendor
 
-This will allow you to download specific versions. You can choose the same version as the Dojo's Cairo version, for example, 2.5.4, with the following command:
+🤖 Smart contracts are kind of like "always on" vending machines that anyone can access. Let's make a decentralized, digital currency. Then, let's build an unstoppable vending machine that will buy and sell the currency. We'll learn about the "approve" pattern for ERC20s and how contract to contract interactions work.
 
-```bash
-asdf install scarb 2.5.4
-```
+https://github.com/Quantum3-Labs/speedrunstark/tree/token-vendor
 
-and set a global version:
+---
 
-```bash
-asdf global scarb 2.5.4
-```
+## 🚩 Challenge 3: 🎲 Dice Game
 
-Otherwise, you can simply run the following command in your terminal, and follow the onscreen instructions. This
-will install the version `2.5.4` of Scarb.
+🎰 Randomness is tricky on a public deterministic blockchain. In this challenge you will explore creating random numbers using block hash and how that may be exploitable. Attack the dice game with your own contract by predicting the randomness ahead of time to always roll a winner!
 
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v 2.5.4
-```
+https://github.com/Quantum3-Labs/speedrunstark/tree/dice-game
 
-</details>
+---
 
-## Compatible versions
+## 🚩 Challenge 4: ⚖️ Build a DEX Challenge
 
-- scarb - v2.5.4
-- cairo - v2.5.4
-- starknet - v2.5.4
-- sierra - v1.4.0
-- rpc - v0.5.1
+💵 Build an exchange that swaps ETH to tokens and tokens to ETH. 💰 This is possible because the smart contract holds reserves of both assets and has a price function based on the ratio of the reserves. Liquidity providers are issued a token that represents their share of the reserves and fees...
 
-## Quickstart
+https://github.com/Quantum3-Labs/speedrunstark/tree/build-a-dex
 
-To get started with Scaffold-Stark 2, follow the steps below:
-
-1. Clone this repo and install dependencies
-
-```bash
-git clone https://github.com/Quantum3-Labs/scaffold-stark-2 --recurse-submodules
-cd scaffold-stark-2
-yarn install
-```
-
-2. Prepare your environment variables. Since we are using localhost(devnet), **you can skip this step!**. But if you want use the .env file, you can fill the envs related to devnet with any predeployed contract address and private key from starknet-devnet.
-
-**Note:** You can also use sepolia testnet, to do that, you need to fill the envs related to sepolia testnet with your own contract address and private key.
-
-```bash
-cp packages/snfoundry/.env.example packages/snfoundry/.env
-```
-
-3. Run a local network in the first terminal.
-
-**Note:** You can skip this step if you want to use Sepolia Testnet.
-
-```bash
-yarn chain
-```
-
-This command starts a local Starknet network using Devnet. The network runs on your local machine and can be used for testing and development.
-
-4. On a second terminal, deploy the sample contract:
-
-```
-yarn deploy --network {NETWORK_NAME} // when NETWORK_NAME is not specified, it defaults to "devnet"
-```
-
-**Note:** To use sepolia tesnet, you have to set {NETWORK_NAME} to `sepolia`, likewise for `mainnet`.
-
-This command deploys a sample smart contract to the local network. The contract is located in `packages/snfoundry/src` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/snfoundry/scripts_js/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-5. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`.
+---
