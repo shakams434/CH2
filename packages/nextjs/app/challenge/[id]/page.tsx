@@ -16,7 +16,7 @@ const PageView: React.FC = () => {
     const getMarkdown = async () => {
       const response = await fetch(
         `https://raw.githubusercontent.com/Quantum3-Labs/speedrunstark/${id}/README.md`,
-        // `https://raw.githubusercontent.com/scaffold-eth/se-2-challenges/challenge-0-simple-nft/README.md`,
+        // `https://raw.githubusercontent.com/scaffold-eth/speedrunstark/challenge-0-simple-nft/README.md`,
       );
       const markdownData = await response.text();
 
