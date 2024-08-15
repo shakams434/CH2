@@ -12,7 +12,7 @@ const allChallenges = [
     challenge: "Challenge #1",
     title: "🥩 Decentralized Staking App",
     description:
-      "🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. We'll learn about the approve pattern for ERC20s andThe users only have to trust the code.",
+      "🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. We'll learn about the approve pattern for ERC20s. The users only have to trust the code.",
     imageUrl: "/stakingToken.png",
     id: "decentralized-staking",
   },
