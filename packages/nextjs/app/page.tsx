@@ -67,8 +67,8 @@ const Home: NextPage = () => {
                 <div className="max-w-[430px] w-full py-20 pl-20 sm:py-0 sm:pl-3 sm:flex lg:pl-0  lg:pt-0">
                   <span className="sm:text-[12px] sm:text-center leading-7 sm:text-xs">
                     The Core-Stars is a curated group of Starknet builders
-                    creating products, prototypes, and tutorials to enrich the
-                    web3 ecosystem. A place to show off your builds and meet
+                    creating products, prototypes, and protocols to enrich the
+                    web3 ecosystem. A place to ask for support, show off your builds and meet
                     other builders. Start crafting your Web3 portfolio by
                     submitting your DEX, onchain Game or SVG NFT build.
                   </span>
