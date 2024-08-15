@@ -68,9 +68,10 @@ const Home: NextPage = () => {
                   <span className="sm:text-[12px] sm:text-center leading-7 sm:text-xs">
                     The Core-Stars is a curated group of Starknet builders
                     creating products, prototypes, and protocols to enrich the
-                    web3 ecosystem. A place to ask for support, show off your builds and meet
-                    other builders. Start crafting your Web3 portfolio by
-                    submitting your DEX, onchain Game or SVG NFT build.
+                    web3 ecosystem. A place to ask for support, show off your
+                    builds and meet other builders. Start crafting your Web3
+                    portfolio by submitting your DEX, onchain Game or SVG NFT
+                    build.
                   </span>
                 </div>
               </div>

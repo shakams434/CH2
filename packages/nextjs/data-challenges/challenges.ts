@@ -12,7 +12,7 @@ const allChallenges = [
     challenge: "Challenge #1",
     title: "🥩 Decentralized Staking App",
     description:
-      "🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. The users only have to trust the code.",
+      "🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. We'll learn about the approve pattern for ERC20s andThe users only have to trust the code.",
     imageUrl: "/stakingToken.png",
     id: "decentralized-staking",
   },
@@ -20,7 +20,7 @@ const allChallenges = [
     challenge: "Challenge #2",
     title: "🏵 Token Vendor",
     description:
-      "🤖 Smart contracts are kind of like \"always on\" vending machines that anyone can access. Let's make a decentralized, digital currency (an ERC20 token in Cairo for Starknet). Then, let's build an unstoppable vending machine that will buy and sell the currency. We'll learn about the approve pattern for ERC20s and how contract to contract interactions work.",
+      "🤖 Smart contracts are kind of like \"always on\" vending machines that anyone can access. Let's make a decentralized, digital currency (an ERC20 token in Cairo for Starknet). Then, let's build an unstoppable vending machine that will buy and sell the currency. We'll learn about how contract to contract interactions work.",
     imageUrl: "/tokenVendor.png",
     border: true,
     id: "token-vendor",
