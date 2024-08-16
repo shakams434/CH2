@@ -6,7 +6,7 @@ const allChallenges = [
       "🎫 Create a simple NFT to learn basics of 🏗 Scaffold-Stark. You'll use Scarb to compile and Starknet.js to deploy smart contracts. Then, you'll use a template React app full of important Starknet components and hooks. Finally, you'll deploy an NFT to a public network to share with friends! 🚀",
     imageUrl: "/simpleNFT.png",
     end: true,
-    id: "simple-nft-example",
+    id: "challenge-0-simple-nft",
   },
   {
     challenge: "Challenge #1",
@@ -14,7 +14,7 @@ const allChallenges = [
     description:
       "🦸 A superpower of Starknet is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. The users only have to trust the code. We'll learn about the approve pattern for ERC20s.",
     imageUrl: "/stakingToken.png",
-    id: "decentralized-staking",
+    id: "challenge-1-decentralized-staking",
   },
   {
     challenge: "Challenge #2",
@@ -23,7 +23,7 @@ const allChallenges = [
       "🤖 Smart contracts are kind of like \"always on\" vending machines that anyone can access. Let's make a decentralized, digital currency (an ERC20 token in Cairo for Starknet). Then, let's build an unstoppable vending machine that will buy and sell the currency. We'll learn about how contract to contract interactions work.",
     imageUrl: "/tokenVendor.png",
     border: true,
-    id: "token-vendor",
+    id: "challenge-2-token-vendor",
   },
   {
     challenge: "Challenge #3",
@@ -31,7 +31,7 @@ const allChallenges = [
     description:
       "🎰 Randomness is tricky on a public deterministic blockchain. The block hash is the result proof-of-work (for now) and some builders use this as a weak form of randomness. In this challenge you will take advantage of a Dice Game contract by predicting the randomness in order to only roll winning dice!",
     imageUrl: "/diceGame.png",
-    id: "dice-game",
+    id: "challenge-3-dice-game",
   },
   {
     challenge: "Challenge #4",
