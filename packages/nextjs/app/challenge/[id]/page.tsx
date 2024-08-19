@@ -16,15 +16,21 @@ const PageView: React.FC = () => {
     const getMarkdown = async () => {
       const response = await fetch(
         `https://raw.githubusercontent.com/Quantum3-Labs/speedrunstark/${id}/README.md`,
-        // `https://raw.githubusercontent.com/scaffold-eth/speedrunstark/challenge-0-simple-nft/README.md`,
       );
-      const markdownData = await response.text();
+      let markdownData = await response.text();
+
+      const baseUrl = `https://raw.githubusercontent.com/Quantum3-Labs/speedrunstark/${id}/`;
+      markdownData = markdownData.replace(
+        /!\[(.*?)\]\((?!https?)(.*?)\)/g,
+        `![$1](${baseUrl}$2)`,
+      );
 
       setMarkdown(markdownData);
     };
 
     getMarkdown();
   }, [id]);
+
   const handleClick = () => {
     window.open(
       `https://github.com/Quantum3-Labs/speedrunstark/tree/${id}`,
