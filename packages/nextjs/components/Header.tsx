@@ -1,50 +1,24 @@
-import React, { useCallback, useRef, useState } from "react";
-import { BugAntIcon } from "@heroicons/react/24/outline";
-import { useOutsideClick } from "~~/hooks/scaffold-stark";
-import { usePathname } from "next/navigation";
-import { FaucetButton } from "~~/components/scaffold-stark/FaucetButton";
-import HeaderLogo from "./HeaderLogo";
-
-type HeaderMenuLink = {
-  label: string;
-  href: string;
-  icon?: React.ReactNode;
-};
-
-export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
-];
+import React from "react";
+import { LanguageButton } from "./Language/LanguageButton";
+import { AccountButton } from "./Wallet/AccountInfor";
+import Image from "next/image";
 
 export const Header = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const burgerMenuRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
-  useOutsideClick(
-    burgerMenuRef,
-    useCallback(() => setIsDrawerOpen(false), []),
-  );
-
   return (
-    <div
-      className={`lg:static top-0 navbar min-h-0 flex-shrink-0 justify-between z-20 px-0 sm:px-2 bg-base-100 ${pathname !== "/" ? "border-b border-[#1c2d49] bg-base-400" : ""}`}
-    >
-      <div className="pl-8 sm:pl-0">
-        {pathname !== "/" && (
-          <button onClick={() => (window.location.href = "/")}>
-            <HeaderLogo />
-          </button>
-        )}
+    <div className="bg-[#4D58FF] md:px-6 md:py-4 px-2 py-3 flex justify-between relative z-50">
+      <div>
+        <div onClick={() => (window.location.href = "/")}>
+          <Image
+            src={"/homescreen/starknet-logo.svg"}
+            alt="logo"
+            width={120}
+            height={28}
+          />
+        </div>
       </div>
-      <div className="navbar-end flex-grow pr-8 py-[8px] sm:pr-0 leading-7">
-        <FaucetButton />
+      <div className="flex items-center md:gap-6 gap-2">
+        <LanguageButton />
+        <AccountButton />
       </div>
     </div>
   );

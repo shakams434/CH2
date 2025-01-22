@@ -2,11 +2,11 @@ import { Components } from "react-markdown";
 
 export const getMarkdownComponents = (): Components => {
   return {
-    h1: ({ children }) => (
-      <h1 className="text-primary text-4xl font-bold py-4 border-b border-[#1c2d49] mb-2 sm:text-lg ">
-        {children}
-      </h1>
-    ),
+    // h1: ({ children }) => (
+    //   <h1 className="text-primary text-4xl font-bold py-4 border-b border-[#1c2d49] mb-2 sm:text-lg ">
+    //     {children}
+    //   </h1>
+    // ),
     h2: ({ children }) => (
       <h2 className="text-primary text-3xl font-bold py-3 sm:text-sm sm:m-0">
         {children}
@@ -18,7 +18,7 @@ export const getMarkdownComponents = (): Components => {
       </h3>
     ),
     p: ({ children }) => (
-      <p className="text-primary text-base sm:text-xs lg:text-sm text-justify max-w-[860px] sm:max-w-[400px] sm:overflow-auto ">
+      <p className="text-primary text-base sm:text-xs lg:text-sm text-justify sm:overflow-auto ">
         {children}
       </p>
     ),
