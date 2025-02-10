@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ConfirmSubmitModal } from "./ConfirmSubmitModal";
 import { DynamicSequentialInputs } from "./DynamicSequentialInputs";
 import { Challenge } from "~~/mockup/type";
@@ -6,12 +6,33 @@ import Image from "next/image";
 import { CloseIcon } from "../icons/CloseIcon";
 import { ExpandIcon } from "../icons/ExpandIcon";
 import { useOutsideClick } from "~~/hooks/scaffold-stark";
+import { composeSubmission } from "~~/utils/submission";
+import { useAccount } from "@starknet-react/core";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useTargetNetwork } from "~~/hooks/scaffold-stark/useTargetNetwork";
+import { WrongNetworkDropdown } from "../scaffold-stark/CustomConnectButton/WrongNetworkDropdown";
+import { useGlobalState } from "~~/services/store/store";
 
 export const SubmitChallenge = ({ challenge }: { challenge: Challenge }) => {
+  const { address, chainId } = useAccount();
+  const { targetNetwork } = useTargetNetwork();
   const [isExpanded, setIsExpanded] = useState(false);
   const [openSubmit, setOpenSubmit] = useState(false);
   const [openConfirmSubmit, setOpenConfirmSubmit] = useState(false);
+  const [inputValues, setInputValues] = useState<Record<string, string>>(() =>
+    (challenge.inputURL || []).reduce(
+      (acc, field) => ({ ...acc, [field.id]: "" }),
+      {},
+    ),
+  );
+  const { submissionStatus, setSubmissionTopic } = useGlobalState();
+  const [loading, setLoading] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    setInputValues({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [challenge, openSubmit]);
 
   const handleCloseModal = () => {
     setOpenSubmit(false);
@@ -31,20 +52,34 @@ export const SubmitChallenge = ({ challenge }: { challenge: Challenge }) => {
 
   return (
     <div className="flex justify-center">
-      <div
-        onClick={() => setOpenSubmit(true)}
-        className="fixed z-[95] md:bottom-5 bottom-3 transform  flex justify-center items-center gap-2 bg-[#4D58FF] md:w-fit w-[90%] px-5 cursor-pointer"
-      >
-        <Image
-          src={"/homescreen/submit.svg"}
-          alt="icon"
-          width={20}
-          height={20}
-        />
-        <p className="text-lg font-vt323 uppercase !text-white">
-          Submit challenge
-        </p>
-      </div>
+      {address ? (
+        targetNetwork.id === chainId ? (
+          <div
+            onClick={() => setOpenSubmit(true)}
+            className="fixed z-[95] md:bottom-5 bottom-3 transform  flex justify-center items-center gap-2 bg-[#4D58FF] md:w-fit w-[90%] px-5 cursor-pointer"
+          >
+            <Image
+              src={"/homescreen/submit.svg"}
+              alt="icon"
+              width={20}
+              height={20}
+            />
+            <p className="text-lg font-vt323 uppercase !text-white">
+              Submit challenge
+            </p>
+          </div>
+        ) : (
+          <div className="fixed z-[95] md:bottom-5 bottom-3 transform flex justify-center items-center md:w-fit !text-white">
+            <WrongNetworkDropdown />
+          </div>
+        )
+      ) : (
+        <div className="fixed z-[95] md:bottom-5 bottom-3 transform  flex justify-center items-center gap-2 bg-[#ADADAD] md:w-fit w-[90%] px-5 cursor-pointer">
+          <p className="text-lg font-vt323 uppercase !text-white">
+            wallet not connected
+          </p>
+        </div>
+      )}
       {openSubmit && (
         <section
           ref={modalRef}
@@ -114,13 +149,58 @@ export const SubmitChallenge = ({ challenge }: { challenge: Challenge }) => {
               <DynamicSequentialInputs
                 inputFields={challenge.inputURL}
                 onSubmit={handleSubmit}
+                inputValues={inputValues}
+                setInputValues={setInputValues}
               />
             </div>
+            {submissionStatus && (
+              <div className="pb-8 flex flex-row items-center text-black">
+                {submissionStatus}
+              </div>
+            )}
           </div>
         </section>
       )}
       {openConfirmSubmit && (
-        <ConfirmSubmitModal onClose={() => setOpenConfirmSubmit(false)} />
+        <ConfirmSubmitModal
+          loading={loading}
+          onClose={() => setOpenConfirmSubmit(false)}
+          onSubmit={() => {
+            setOpenConfirmSubmit(false);
+            const payload = composeSubmission(
+              challenge,
+              address || "",
+              inputValues,
+            );
+            setLoading(true);
+            axios
+              .post(
+                `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/verify`,
+                payload,
+              )
+              .then((response) => {
+                if (response && response.data && response.data.verificationId) {
+                  setSubmissionTopic(response.data.verificationId);
+                } else {
+                  toast.error("Submit failed for unknown error...");
+                }
+              })
+              .catch((error) => {
+                if (
+                  error.response &&
+                  error.response.data &&
+                  error.response.data.error
+                ) {
+                  toast.error(error.response.data.error);
+                } else {
+                  toast.error("Submit failed for server unknown error...");
+                }
+              })
+              .finally(() => {
+                setLoading(false);
+              });
+          }}
+        />
       )}
     </div>
   );
